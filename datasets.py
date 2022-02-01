@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader, Dataset
-from colorization.colorizers import *
+from .colorization.colorizers import *
 
 
 def normalize_l(self, in_l):
