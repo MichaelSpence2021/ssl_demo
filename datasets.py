@@ -33,7 +33,7 @@ class intelDataset(Dataset):
                 train_y.append(y_value)
                 img = load_img(image)
                 (tens_l_orig, tens_l_rs) = preprocess_img(img, HW=(256,256))
-                normal_img = normalize(tens_l_rs)
+                normal_img = normalize_l(tens_l_rs)
                 train_x.append(normal_img)
         self.X = train_x
         self.y = train_y
