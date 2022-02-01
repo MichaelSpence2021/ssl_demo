@@ -16,6 +16,9 @@ class intelDataset(Dataset):
     
     
     def __init__(self, data_path):
+
+        import os
+
         'Initialization'
         class_paths = [data_path + '/' + path for path in os.listdir(data_path) if path[0] != '.']
         category_map = {'buildings':0, 'forest':1, 'glacier':2, 'mountain':3, 'sea':4, 'street':5}
