@@ -1,5 +1,5 @@
 from torch.utils.data import Dataset
-from .colorization.colorizers import *
+from .colorization.colorizers import load_img, preprocess_img
 import os
 
 
@@ -16,8 +16,6 @@ class intelDataset(Dataset):
     
     
     def __init__(self, data_path):
-
-        import os
 
         'Initialization'
         class_paths = [data_path + '/' + path for path in os.listdir(data_path) if path[0] != '.']
