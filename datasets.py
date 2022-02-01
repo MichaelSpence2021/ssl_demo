@@ -1,4 +1,5 @@
 from torch.utils.data import Dataset
+import torch
 from .colorization.colorizers import load_img, preprocess_img
 import os
 
