@@ -4,12 +4,12 @@ from .colorization.colorizers import load_img, preprocess_img
 import os
 
 
-def normalize_l(self, in_l):
+def normalize_l(in_l):
 
     l_cent = 50.
     l_norm = 100.
     ab_norm = 110.
-    return (in_l-self.l_cent)/self.l_norm
+    return (in_l-l_cent)/l_norm
 
 
 
