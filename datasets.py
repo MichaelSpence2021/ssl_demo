@@ -78,7 +78,7 @@ class intelDataset(Dataset):
         import matplotlib.pyplot as plt
         import random
         
-        fig, axs = plt.subplots(1,figsize=(40,40))
+        fig, axs = plt.subplots(1,figsize=(20,20))
 
         img_tens, label = self[index]
         img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
@@ -86,6 +86,22 @@ class intelDataset(Dataset):
         label_name = list(self.map.keys())[label_index]
         axs.imshow(img_arr, cmap = 'gray')
         axs.title.set_text(label_name)
+        plt.show()
+
+
+    def plot_classes(self):
+
+        import matplotlib.pyplot as plt
+
+        counts = {'buildings':0, 'forest':0, 'glacier':0, 'mountain':0, 'sea':0, 'street':0}
+        for entry in train_dataset.y:
+            i = int(entry.argmax())
+            counts[str(i)] +=1
+        y_range = np.arange(len(counts))
+        plt.barh(y_range, counts.values())
+        plt.yticks(y_range,labels=list(counts.keys()))
+        plt.xlabel('Number of Class Instances')
+        plt.title('Class Distribution of Dataset')
         plt.show()
 
 
