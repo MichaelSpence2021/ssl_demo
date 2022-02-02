@@ -55,15 +55,17 @@ class intelDataset(Dataset):
         
         fig, axs = plt.subplots(1,len(samples))
         for i in range(len(samples)):
-            axs[i].axis('off')
+            if len(samples) > 1:
+                axs[i].axis('off')
+            else:
+                axs.axis('off')
             img_tens, label = self[samples[i]]
             img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
             label_index = int(label.argmax())
             label_name = list(self.map.keys())[label_index]
             axs[i].imshow(img_arr, cmap = 'gray')
             axs[i].title.set_text(label_name)
-            plt.show()
-
+        plt.show()
 
 
 
