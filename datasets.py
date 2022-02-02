@@ -49,12 +49,12 @@ class intelDataset(Dataset):
         return self.X[index], self.y[index]
 
     
-    def visualize_random(self,no_samples):
+    def visualize_random(self,no_samples, size=80):
         
         import matplotlib.pyplot as plt
         import random
 
-        figsize = 40/no_samples
+        figsize = size/no_samples
         
         fig, axs = plt.subplots(1,no_samples,figsize=(figsize,figsize))
 
@@ -84,8 +84,8 @@ class intelDataset(Dataset):
         img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
         label_index = int(label.argmax())
         label_name = list(self.map.keys())[label_index]
-        axs[i].imshow(img_arr, cmap = 'gray')
-        axs[i].title.set_text(label_name)
+        axs.imshow(img_arr, cmap = 'gray')
+        axs.title.set_text(label_name)
         plt.show()
 
 
