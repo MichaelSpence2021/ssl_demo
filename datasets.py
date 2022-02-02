@@ -48,7 +48,9 @@ class intelDataset(Dataset):
         # Select sample
         return self.X[index], self.y[index]
 
+    
     def visualize(self,samples):
+        
         import matplotlib.pyplot as plt
         
         fig, axs = plt.subplots(1,len(samples))
@@ -59,7 +61,7 @@ class intelDataset(Dataset):
             label_index = int(label.argmax())
             label_name = list(self.map.keys())[label_index]
             axs[i].imshow(img_arr, cmap = 'gray')
-            axs.title.set_text(label_name)
+            axs[i].title.set_text(label_name)
             plt.show()
 
 
