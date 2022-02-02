@@ -59,7 +59,7 @@ class intelDataset(Dataset):
         fig, axs = plt.subplots(1,no_samples,figsize=(figsize,figsize))
 
         for i in range(no_samples):
-            if len(no_samples) > 1:
+            if no_samples > 1:
                 axs[i].axis('off')
             else:
                 axs.axis('off')
