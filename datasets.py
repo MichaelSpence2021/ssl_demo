@@ -49,22 +49,43 @@ class intelDataset(Dataset):
         return self.X[index], self.y[index]
 
     
-    def visualize(self,samples):
+    def visualize_random(self,no_samples):
         
         import matplotlib.pyplot as plt
+        import random
+
+        figsize = 40/no_samples
         
-        fig, axs = plt.subplots(1,len(samples))
-        for i in range(len(samples)):
-            if len(samples) > 1:
+        fig, axs = plt.subplots(1,no_samples,figsize=(figsize,figsize))
+
+        for i in range(no_samples):
+            if len(no_samples) > 1:
                 axs[i].axis('off')
             else:
                 axs.axis('off')
-            img_tens, label = self[samples[i]]
+            index = random.randint(0,len(self))
+            img_tens, label = self[index]
             img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
             label_index = int(label.argmax())
             label_name = list(self.map.keys())[label_index]
             axs[i].imshow(img_arr, cmap = 'gray')
             axs[i].title.set_text(label_name)
+        plt.show()
+
+
+    def visualize(self,index):
+        
+        import matplotlib.pyplot as plt
+        import random
+        
+        fig, axs = plt.subplots(1,figsize=(40,40))
+
+        img_tens, label = self[index]
+        img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
+        label_index = int(label.argmax())
+        label_name = list(self.map.keys())[label_index]
+        axs[i].imshow(img_arr, cmap = 'gray')
+        axs[i].title.set_text(label_name)
         plt.show()
 
 
