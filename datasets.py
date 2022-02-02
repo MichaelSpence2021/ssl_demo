@@ -92,11 +92,13 @@ class intelDataset(Dataset):
     def plot_classes(self):
 
         import matplotlib.pyplot as plt
+        import numpy as np
 
         counts = {'buildings':0, 'forest':0, 'glacier':0, 'mountain':0, 'sea':0, 'street':0}
-        for entry in train_dataset.y:
+        for entry in self.y:
             i = int(entry.argmax())
-            counts[str(i)] +=1
+            label = list(counts.keys())[i]
+            counts[label] +=1
         y_range = np.arange(len(counts))
         plt.barh(y_range, counts.values())
         plt.yticks(y_range,labels=list(counts.keys()))
