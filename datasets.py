@@ -37,6 +37,7 @@ class intelDataset(Dataset):
                 train_x.append(normal_img)
         self.X = train_x
         self.y = train_y
+        self.map = category_map
         
     def __len__(self):
         'Denotes the total number of samples'
@@ -46,3 +47,21 @@ class intelDataset(Dataset):
         'Generates one sample of data'
         # Select sample
         return self.X[index], self.y[index]
+
+    def visualize(self,samples):
+        import matplotlib.pyplot as plt
+        
+        fig, axs = plt.subplots(1,len(samples))
+        for i in range(len(samples)):
+            axs[i].axis('off')
+            img_tens, label = self[samples[i]]
+            img_arr = img_tens.cpu().detach().numpy()[0,0,:,:]
+            label_index = int(label.argmax())
+            label_name = list(self.map.keys())[label_index]
+            axs[i].imshow(img_arr, cmap = 'gray')
+            axs.title.set_text(label_name)
+            plt.show()
+
+
+
+
