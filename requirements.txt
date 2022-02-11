@@ -2,6 +2,7 @@ torch
 scikit-image
 numpy
 matplotlib
+tqdm
 argparse
 PIL
 imageio
